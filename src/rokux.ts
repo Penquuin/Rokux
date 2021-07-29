@@ -32,6 +32,13 @@ export class Store<S, A extends Action> {
 		this.Changed.Fire(ActionDispatched, NewOne, OldOne);
 	}
 
+	/**
+	 * GetState
+	 */
+	public GetState(): S {
+		return this.CurrentState;
+	}
+
 	public Dispatch(ActionDispatched: A): void {
 		if (this.ReadonlyMiddleware) {
 			const OldOne = this.CurrentState;
