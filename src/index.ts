@@ -2,8 +2,7 @@ import { Action, AnyAction, ActionWithState, Reducer, ReadonlyMiddleware } from 
 import { CreateReducer, Store } from "rokux";
 
 declare namespace Rokux {
-	export { Action, AnyAction, ActionWithState, Reducer, ReadonlyMiddleware };
-	export { CreateReducer, Store };
+	export { Action, AnyAction, ActionWithState, Reducer, ReadonlyMiddleware, CreateReducer, Store };
 }
 
-export = Rokux;
+export default Rokux;
