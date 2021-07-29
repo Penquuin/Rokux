@@ -1,7 +1,7 @@
 {
   "name": "@rbxts/rokux",
   "version": "1.0.0",
-  "description": "This is a small package which manages states.\nThe reason why I am creating my own state machine is simply because I wanted to.\nIt is lightweight, so don't expect too many features.",
+  "description": "(Inspired by Rodux)\nThis is a small package which manages states.\nThe reason why I am creating my own state machine is simply because I wanted to.\nIt is ultra lightweight, so don't expect too many features.",
   "main": "out/init.lua",
   "scripts": {
     "build": "rbxtsc",
@@ -9,7 +9,7 @@
     "prepublishOnly": "npm run build"
   },
   "keywords": [],
-  "author": "",
+  "author": "penquuin",
   "license": "ISC",
   "types": "out/index.d.ts",
   "files": [
