@@ -12,4 +12,4 @@ export type ActionWithState<S, A extends Action> = {
 
 export type Reducer<S, A extends Action> = (state: S, action: A) => S;
 
-export type ReadonlyMiddleware<S, A extends Action> = (nextDispatch: (action: A) => void, state: S) => (action: A) => S;
+export type ReadonlyMiddleware<S, A extends Action> = (nextDispatch: (action: A) => S, state: S) => (action: A) => S;

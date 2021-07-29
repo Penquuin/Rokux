@@ -22,7 +22,6 @@ export class Store<S, A extends Action> {
 			this.ReadonlyMiddleware = ReadonlyMiddleware;
 		}
 	}
-
 	private SecretDispatch(State: S, ActionDispatched: A) {
 		const OldOne = this.CurrentState;
 		const NewOne = this.Reducer(State, ActionDispatched);
@@ -32,9 +31,13 @@ export class Store<S, A extends Action> {
 
 	public Dispatch(ActionDispatched: A): void {
 		if (this.ReadonlyMiddleware) {
-			this.ReadonlyMiddleware((action) => {
-				this.SecretDispatch(this.CurrentState, action);
+			const OldOne = this.CurrentState;
+			const NewOne = this.ReadonlyMiddleware((action) => {
+				return this.Reducer(this.CurrentState, action);
 			}, this.CurrentState)(ActionDispatched);
+
+			this.CurrentState = NewOne;
+			this.Changed.Fire(ActionDispatched, NewOne, OldOne);
 		} else {
 			this.SecretDispatch(this.CurrentState, ActionDispatched);
 		}
