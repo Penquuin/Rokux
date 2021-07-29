@@ -9,8 +9,7 @@ import {
 import { CreateReducer as createReducer, Store as store } from "rokux";
 
 namespace Rokux {
-	export const CreateReducer: <S, A extends action<string>>(reducertable: ActionWithState<S, A>) => reducer<S, A> =
-		createReducer;
+	export const CreateReducer: typeof createReducer = createReducer;
 	export const Store: typeof store = store;
 
 	export type Action = action;
