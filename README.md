@@ -15,7 +15,7 @@ for me to find a module that fulfills my requirements.
 These are the current objects in the namespace.
 
 ```ts
-import Rokux from "index";
+import Rokux from "@rbxts/Rokux";
 
 //Action Definitions
 interface IEatCookie extends Rokux.Action<"EatCookie"> {}
