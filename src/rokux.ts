@@ -16,7 +16,7 @@ export class Store<S, A extends Action> {
 	private CurrentState: S;
 	private ReadonlyMiddleware: ReadonlyMiddleware<S, A> | undefined;
 
-	public Changed = new Signal<(ActionDispatched: A, NewState: S, OldState: S) => {}>();
+	public Changed = new Signal<(ActionDispatched: A, NewState: S, OldState: S) => void>();
 
 	constructor(Reducer: Reducer<S, A>, DefaultState: S, ReadonlyMiddleware?: ReadonlyMiddleware<S, A>) {
 		this.Reducer = Reducer;
