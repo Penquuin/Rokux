@@ -3,7 +3,7 @@ import { Action, ActionFromType, ActionWithState, AnyAction, ReadonlyMiddleware,
 
 export function CreateReducer<S, A extends Action>(reducerTable: ActionWithState<S, A>): Reducer<S, A> {
 	return (state: S, action: A) => {
-		const found = reducerTable[action.type];
+		const found = reducerTable[action.type as A["type"]];
 		if (found) {
 			return found(state, action as ActionFromType<A, typeof action["type"]>);
 		}
