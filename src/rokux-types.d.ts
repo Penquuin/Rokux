@@ -6,7 +6,7 @@ export interface AnyAction extends Action {
 	[k: string]: unknown;
 }
 
-export type ActionFromType<A, T extends string> = A extends {
+export type ActionFromType<A, T = string> = A extends {
 	type: T;
 }
 	? A

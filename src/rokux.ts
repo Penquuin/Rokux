@@ -1,4 +1,5 @@
 import Signal from "@rbxts/signal";
+import Rokux from "index";
 import { Action, ActionFromType, ActionWithState, AnyAction, ReadonlyMiddleware, Reducer } from "rokux-types";
 
 export function CreateReducer<S, A extends Action>(reducerTable: ActionWithState<S, A>): Reducer<S, A> {
@@ -51,5 +52,20 @@ export class Store<S, A extends Action> {
 		} else {
 			this.SecretDispatch(this.CurrentState, ActionDispatched);
 		}
+	}
+
+	/**
+	 * This
+	 */
+	public ConnectToActionInfluencedSignal<T extends Rokux.Action>(
+		typeName: T["type"],
+		callback: (action: T, newState: S, oldState: S) => void,
+	): RBXScriptConnection {
+		return this.Changed.Connect((a, n, o) => {
+			if (a["type"] !== typeName) {
+				return;
+			}
+			callback(a as unknown as T, n, o);
+		});
 	}
 }
