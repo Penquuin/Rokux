@@ -56,6 +56,13 @@ RokuxStore.Changed.Connect((actionDispatched, newState, oldState) => {
  print(`Action Has Casted Changes!\nType:${actionDispatched.type}`);
 });
 
+//You can connect to a specific action dispatch event
+const connectionB = RokuxStore.ConnectToActionInfluencedSignal<IEatCookie>(
+ "EatCookie",
+ (action, newState, oldState) => {
+  print(`Eat cookie has been dispatched!`);
+ },
+);
 
 ```
 
@@ -67,4 +74,8 @@ Rokux should be pronunced as `ro-coc-s`.
 
 #### Is this a stable module?
 
-Definitely not, this is just a module that I made in free-time.
+~~Definitely not, this is just a module that I made in free-time.~~
+
+
+This module has become a LTS project, I will regularly review the codes.
+I think it is stable for now.
