@@ -55,6 +55,17 @@ export class Store<S, A extends Action> {
 	}
 
 	/**
+	 * Type system is erased during compile, so this is
+	 * a weird work-around for this issue.
+	 * @param x A|T
+	 * @param t T["type"]
+	 * @returns x is T
+	 */
+	Guard<A extends Rokux.Action, T extends Rokux.Action>(x: A | T, t: T["type"]): x is T {
+		return x["type"] === t;
+	}
+
+	/**
 	 * This
 	 */
 	public ConnectToActionInfluencedSignal<T extends Rokux.Action>(
@@ -62,10 +73,10 @@ export class Store<S, A extends Action> {
 		callback: (action: T, newState: S, oldState: S) => void,
 	): RBXScriptConnection {
 		return this.Changed.Connect((a, n, o) => {
-			if (a["type"] !== typeName) {
+			if (!this.Guard<A, T>(a, typeName)) {
 				return;
 			}
-			callback(a as unknown as T, n, o);
+			callback(a, n, o);
 		});
 	}
 }
